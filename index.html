@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Optical Filter Threads & Mounts Cheatsheet</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      margin: 0;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    
+    .header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 30px;
+      text-align: center;
+    }
+    
+    .header h1 {
+      margin: 0 0 10px 0;
+      font-size: 2.5em;
+      font-weight: 300;
+    }
+    
+    .header p {
+      margin: 0;
+      opacity: 0.9;
+      font-size: 1.1em;
+    }
+    
+    .section {
+      padding: 30px;
+    }
+    
+    .section-title {
+      font-size: 1.8em;
+      color: #333;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 3px solid #667eea;
+    }
+    
+    .mount-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 40px;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+    
+    .mount-table th {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 15px;
+      text-align: left;
+      font-weight: 600;
+    }
+    
+    .mount-table td {
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+      vertical-align: middle;
+    }
+    
+    .mount-table tr:hover {
+      background: #f8f9ff;
+    }
+    
+    .mount-name {
+      font-weight: bold;
+      color: #333;
+      font-size: 1.1em;
+    }
+    
+    .thread-spec {
+      font-family: 'Courier New', monospace;
+      background: #f0f0f0;
+      padding: 4px 8px;
+      border-radius: 4px;
+      color: #d63384;
+      font-weight: bold;
+    }
+    
+    .features {
+      color: #666;
+      font-size: 0.9em;
+    }
+    
+    .typical-use {
+      color: #0d6efd;
+      font-style: italic;
+    }
+    
+    .diagram-cell {
+      text-align: center;
+      width: 160px;
+    }
+    
+    .summary-stats {
+      display: flex;
+      justify-content: space-around;
+      background: #f8f9fa;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 10px;
+    }
+    
+    .stat {
+      text-align: center;
+    }
+    
+    .stat-number {
+      font-size: 2em;
+      font-weight: bold;
+      color: #667eea;
+    }
+    
+    .stat-label {
+      color: #666;
+      font-size: 0.9em;
+    }
+    
+    .faq-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .faq-item {
+      background: #f8f9ff;
+      border-left: 4px solid #667eea;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    
+    .faq-question {
+      color: #333;
+      font-size: 1.1em;
+      font-weight: 600;
+      margin: 0 0 12px 0;
+    }
+    
+    .faq-answer {
+      color: #555;
+      line-height: 1.6;
+      margin: 0;
+      font-size: 0.95em;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Optical Filter Threads & Mounts</h1>
+      <p>Complete reference guide for identifying and selecting optical filter mounting systems</p>
+      <p style="margin-top:18px;font-size:1.08em;color:#f8e9ff;text-shadow:0 1px 2px #764ba2;">
+        A quick cheatsheet for optical filter thread types, sizes, and mounting standards used in labs, cameras, and industry.
+      </p>
+      <p style="margin-top:10px;font-size:1em;color:#333;background:#f8f9ff;padding:10px 18px;border-radius:8px;max-width:700px;margin-left:auto;margin-right:auto;">
+        <b>Thread Specification</b> indicates the diameter and pitch of the thread. For example, <b>M12×0.5</b> means 12&nbsp;mm diameter with 0.5&nbsp;mm thread pitch (distance between threads), while <b>1.035"-40</b> means 1.035&nbsp;inch diameter with 40 threads per inch (TPI).
+      </p>
+    </div>
+    
+    <!-- Imperial/Customary Section -->
+    <div class="section">
+      <h2 class="section-title">Imperial/Customary Threads (Inch-based)</h2>
+      <table class="mount-table">
+        <thead>
+          <tr>
+            <th>Mount Type</th>
+            <th>Thread Specification</th>
+            <th>Suitable Optics Size</th>
+            <th>Features & Notes</th>
+            <th>Typical Applications</th>
+          </tr>
+        </thead>
+        <tbody id="imperial-mounts">
+          <tr>
+            <td><div class="mount-name">SM05</div></td>
+            <td><span class="thread-spec">0.535"-40</span></td>
+            <td class="diagram-cell">12.7mm</td>
+            <td><div class="features">Thorlabs standard, small diameter, 40 TPI</div></td>
+            <td><div class="typical-use">Small optics, fiber coupling</div></td>
+          </tr>
+          <tr>
+            <td><div class="mount-name">SM1</div></td>
+            <td><span class="thread-spec">1.035"-40</span></td>
+            <td class="diagram-cell">25.4mm</td>
+            <td><div class="features">Thorlabs standard, most common, 40 TPI</div></td>
+            <td><div class="typical-use">Laboratory optics, lens tubes</div></td>
+          </tr>
+          <tr>
+            <td><div class="mount-name">SM2</div></td>
+            <td><span class="thread-spec">2.035"-40</span></td>
+            <td class="diagram-cell">50.8mm</td>
+            <td><div class="features">Thorlabs standard, large diameter, 40 TPI</div></td>
+            <td><div class="typical-use">Large optics, beam expanders</div></td>
+          </tr>
+          <tr>
+            <td><div class="mount-name">SM3</div></td>
+            <td><span class="thread-spec">3.035"-40</span></td>
+            <td class="diagram-cell">76.2mm</td>
+            <td><div class="features">Thorlabs standard, extra large, 40 TPI</div></td>
+            <td><div class="typical-use">Very large optics, telescope accessories</div></td>
+          </tr>
+          <tr>
+            <td><div class="mount-name">C-Mount</div></td>
+            <td><span class="thread-spec">1"-32 TPI</span></td>
+            <td class="diagram-cell">25.4mm</td>
+            <td><div class="features">Camera standard, 32 TPI, 17.526mm flange</div></td>
+            <td><div class="typical-use">Machine vision, CCTV cameras</div></td>
+          </tr>
+          <tr>
+            <td><div class="mount-name">T-Mount</div></td>
+            <td><span class="thread-spec">1.375"-24 TPI</span></td>
+            <td class="diagram-cell">34.9mm</td>
+            <td><div class="features">Telescope standard, 24 TPI, T2 adapter</div></td>
+            <td><div class="typical-use">Photography, telescope adapters</div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Metric Section -->
+    <div class="section">
+      <h2 class="section-title">Metric Threads (ISO Standard)</h2>
+      <table class="mount-table">
+        <thead>
+          <tr>
+            <th>Mount Type</th>
+            <th>Thread Specification</th>
+            <th>Suitable Optics Size</th>
+            <th>Features & Notes</th>
+            <th>Typical Applications</th>
+          </tr>
+        </thead>
+        <tbody id="metric-mounts">
+          <tr>
+            <td><div class="mount-name">M12 (S-Mount)</div></td>
+            <td><span class="thread-spec">M12×0.5</span></td>
+            <td class="diagram-cell">12mm</td>
+            <td><div class="features">Board camera standard, fine pitch</div></td>
+            <td><div class="typical-use">Miniature cameras, surveillance</div></td>
+          </tr>
+          <tr>
+            <td><div class="mount-name">M16</div></td>
+            <td><span class="thread-spec">M16×0.5</span></td>
+            <td class="diagram-cell">16mm</td>
+            <td><div class="features">Small optics, fine pitch</div></td>
+            <td><div class="typical-use">Compact optical systems</div></td>
+          </tr>
+          <tr>
+            <td><div class="mount-name">M22</div></td>
+            <td><span class="thread-spec">M22×0.75</span></td>
+            <td class="diagram-cell">22mm</td>
+            <td><div class="features">Medium optics, standard pitch</div></td>
+            <td><div class="typical-use">Mid-size filters, adapters</div></td>
+          </tr>
+          <tr>
+            <td><div class="mount-name">M25</div></td>
+            <td><span class="thread-spec">M25×0.75</span></td>
+            <td class="diagram-cell">25mm</td>
+            <td><div class="features">Common European standard</div></td>
+            <td><div class="typical-use">European optics, microscopy</div></td>
+          </tr>
+          <tr>
+            <td><div class="mount-name">M27</div></td>
+            <td><span class="thread-spec">M27×0.75</span></td>
+            <td class="diagram-cell">27mm</td>
+            <td><div class="features">Photography filters, standard pitch</div></td>
+            <td><div class="typical-use">Camera lens filters</div></td>
+          </tr>
+          <tr>
+            <td><div class="mount-name">M30</div></td>
+            <td><span class="thread-spec">M30×0.75</span></td>
+            <td class="diagram-cell">30mm</td>
+            <td><div class="features">Medium to large optics</div></td>
+            <td><div class="typical-use">Industrial cameras, filters</div></td>
+          </tr>
+          <tr>
+            <td><div class="mount-name">M32</div></td>
+            <td><span class="thread-spec">M32×0.75</span></td>
+            <td class="diagram-cell">32mm</td>
+            <td><div class="features">Industrial standard</div></td>
+            <td><div class="typical-use">Machine vision, industrial optics</div></td>
+          </tr>
+          <tr>
+            <td><div class="mount-name">M37</div></td>
+            <td><span class="thread-spec">M37×0.75</span></td>
+            <td class="diagram-cell">37mm</td>
+            <td><div class="features">Common filter size</div></td>
+            <td><div class="typical-use">Photography, optical instruments</div></td>
+          </tr>
+          <tr>
+            <td><div class="mount-name">M49</div></td>
+            <td><span class="thread-spec">M49×0.75</span></td>
+            <td class="diagram-cell">49mm</td>
+            <td><div class="features">Large photography filters</div></td>
+            <td><div class="typical-use">DSLR lenses, professional cameras</div></td>
+          </tr>
+          <tr>
+            <td><div class="mount-name">M52</div></td>
+            <td><span class="thread-spec">M52×0.75</span></td>
+            <td class="diagram-cell">52mm</td>
+            <td><div class="features">Standard large filter size</div></td>
+            <td><div class="typical-use">Professional photography</div></td>
+          </tr>
+          <tr>
+            <td><div class="mount-name">M55</div></td>
+            <td><span class="thread-spec">M55×0.75</span></td>
+            <td class="diagram-cell">55mm</td>
+            <td><div class="features">Large optics applications</div></td>
+            <td><div class="typical-use">Wide-angle lenses, telescopes</div></td>
+          </tr>
+          <tr>
+            <td><div class="mount-name">M58</div></td>
+            <td><span class="thread-spec">M58×0.75</span></td>
+            <td class="diagram-cell">58mm</td>
+            <td><div class="features">Popular DSLR size</div></td>
+            <td><div class="typical-use">Standard DSLR lenses</div></td>
+          </tr>
+          <tr>
+            <td><div class="mount-name">M62</div></td>
+            <td><span class="thread-spec">M62×0.75</span></td>
+            <td class="diagram-cell">62mm</td>
+            <td><div class="features">Large telephoto lenses</div></td>
+            <td><div class="typical-use">Professional telephoto lenses</div></td>
+          </tr>
+          <tr>
+            <td><div class="mount-name">M72</div></td>
+            <td><span class="thread-spec">M72×0.75</span></td>
+            <td class="diagram-cell">72mm</td>
+            <td><div class="features">Extra large filters</div></td>
+            <td><div class="typical-use">Large telephoto, wide-angle</div></td>
+          </tr>
+          <tr>
+            <td><div class="mount-name">M77</div></td>
+            <td><span class="thread-spec">M77×0.75</span></td>
+            <td class="diagram-cell">77mm</td>
+            <td><div class="features">Professional large filters</div></td>
+            <td><div class="typical-use">High-end photography lenses</div></td>
+          </tr>
+          <tr>
+            <td><div class="mount-name">M82</div></td>
+            <td><span class="thread-spec">M82×0.75</span></td>
+            <td class="diagram-cell">82mm</td>
+            <td><div class="features">Very large diameter</div></td>
+            <td><div class="typical-use">Ultra-wide lenses, specialty optics</div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Other Section -->
+    <div class="section">
+      <h2 class="section-title">Other Mounting Systems</h2>
+      <table class="mount-table">
+        <thead>
+          <tr>
+            <th>Mount Type</th>
+            <th>Specification</th>
+            <th>Suitable Optics Size</th>
+            <th>Features & Notes</th>
+            <th>Typical Applications</th>
+          </tr>
+        </thead>
+        <tbody id="other-mounts">
+          <tr>
+            <td><div class="mount-name">Standard (No Thread)</div></td>
+            <td><span class="thread-spec">Press-fit/Clip-in</span></td>
+            <td class="diagram-cell">Variable</td>
+            <td><div class="features">No threads, mechanical retention only</div></td>
+            <td><div class="typical-use">Simple filter holders, disposable mounts</div></td>
+          </tr>
+          <tr>
+            <td><div class="mount-name">Bayonet Mount</div></td>
+            <td><span class="thread-spec">Twist-lock</span></td>
+            <td class="diagram-cell">Variable</td>
+            <td><div class="features">Quick connect/disconnect, camera lens style</div></td>
+            <td><div class="typical-use">Fast filter changes, professional systems</div></td>
+          </tr>
+          <tr>
+            <td><div class="mount-name">Filter Wheel</div></td>
+            <td><span class="thread-spec">Custom/Proprietary</span></td>
+            <td class="diagram-cell">Variable</td>
+            <td><div class="features">Motorized, multiple filters, automated</div></td>
+            <td><div class="typical-use">Scientific instruments, automated systems</div></td>
+          </tr>
+          <tr>
+            <td><div class="mount-name">Drop-in Filter</div></td>
+            <td><span class="thread-spec">Rectangular slot</span></td>
+            <td class="diagram-cell">Variable</td>
+            <td><div class="features">Large format, no threads, slide-in</div></td>
+            <td><div class="typical-use">Large format photography, specialty systems</div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- FAQ Section (moved to bottom) -->
+    <div class="section">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="faq-container">
+        <div class="faq-item">
+          <h3 class="faq-question">Q: Can SM1 external threads fit into SM1 internal threads?</h3>
+          <p class="faq-answer">Yes! SM1 external threads (1.035"-40) are designed to screw into SM1 internal threads. This allows SM1 threaded components like lens tubes, adapters, and mounts to connect together seamlessly. The same principle applies to all threaded mount systems - external threads mate with internal threads of the same specification.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">Q: Is C-Mount the same as M25?</h3>
+          <p class="faq-answer">No, C-Mount and M25 are different! C-Mount uses 1"-32 TPI (25.4mm diameter, 32 threads per inch), while M25 uses M25×0.75 (25mm diameter, 0.75mm thread pitch). Though similar in diameter, they have different thread pitches and are not interchangeable. C-Mount has coarser threads (32 TPI ≈ 0.79mm pitch) compared to M25's finer 0.75mm pitch.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">Q: Can my optics be slightly smaller than the mount diameter?</h3>
+          <p class="faq-answer">Yes, optics can be slightly smaller than the mount's clear aperture - typically up to 0.2mm smaller. For example, a 24.8mm diameter filter can fit in a 25mm mount. However, ensure there's enough material around the optical element for the retaining ring to secure it properly.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">Q: How are optics secured in threaded mounts?</h3>
+          <p class="faq-answer">Optics are typically secured using a retaining ring that threads into the mount. The optical element (filter, lens, etc.) sits in a groove or shoulder inside the mount, and the retaining ring threads in from the front to hold it in place. This provides secure mounting while allowing for easy removal when needed.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">Q: What's the difference between metric and imperial thread systems?</h3>
+          <p class="faq-answer">Metric threads (like M25×0.75) specify diameter in millimeters and pitch in millimeters between threads. Imperial threads (like 1.035"-40) specify diameter in inches and threads per inch (TPI). Imperial systems are common in North American lab equipment (especially Thorlabs), while metric is standard in European and Asian optics.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">Q: Can I adapt between different mount types?</h3>
+          <p class="faq-answer">Yes! Adapter rings are available to convert between different mount types. For example, you can get SM1-to-C-Mount adapters, or M25-to-M52 step-up rings. These adapters allow you to use filters and optics with different thread types in your optical system.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Footer Credit -->
+    <footer style="background: #667eea; color: white; text-align: center; padding: 18px 0; font-size: 1em; border-radius: 0 0 15px 15px; margin-top: 30px;">
+      Made by SyronOpitcs.com, All right reserved 2025
+    </footer>
+  </div>
+
+  <script>
+    // Mount data with diameter information
+    const imperialMounts = [
+      {
+        name: 'SM05',
+        spec: '0.535"-40',
+        diameter: '12.7mm',
+        features: 'Thorlabs standard, small diameter, 40 TPI',
+        use: 'Small optics, fiber coupling',
+        color: '#ffcdd2'
+      },
+      {
+        name: 'SM1',
+        spec: '1.035"-40',
+        diameter: '25.4mm',
+        features: 'Thorlabs standard, most common, 40 TPI',
+        use: 'Laboratory optics, lens tubes',
+        color: '#f8bbd9'
+      },
+      {
+        name: 'SM2',
+        spec: '2.035"-40',
+        diameter: '50.8mm',
+        features: 'Thorlabs standard, large diameter, 40 TPI',
+        use: 'Large optics, beam expanders',
+        color: '#e1bee7'
+      },
+      {
+        name: 'SM3',
+        spec: '3.035"-40',
+        diameter: '76.2mm',
+        features: 'Thorlabs standard, extra large, 40 TPI',
+        use: 'Very large optics, telescope accessories',
+        color: '#c5cae9'
+      },
+      {
+        name: 'C-Mount',
+        spec: '1"-32 TPI',
+        diameter: '25.4mm',
+        features: 'Camera standard, 32 TPI, 17.526mm flange',
+        use: 'Machine vision, CCTV cameras',
+        color: '#bbdefb'
+      },
+      {
+        name: 'T-Mount',
+        spec: '1.375"-24 TPI',
+        diameter: '34.9mm',
+        features: 'Telescope standard, 24 TPI, T2 adapter',
+        use: 'Photography, telescope adapters',
+        color: '#b2dfdb'
+      }
+    ];
+
+    const metricMounts = [
+      { name: 'M12 (S-Mount)', spec: 'M12×0.5', diameter: '12mm', features: 'Board camera standard, fine pitch', use: 'Miniature cameras, surveillance', color: '#c8e6c9' },
+      { name: 'M16', spec: 'M16×0.5', diameter: '16mm', features: 'Small optics, fine pitch', use: 'Compact optical systems', color: '#dcedc8' },
+      { name: 'M22', spec: 'M22×0.75', diameter: '22mm', features: 'Medium optics, standard pitch', use: 'Mid-size filters, adapters', color: '#f0f4c3' },
+      { name: 'M25', spec: 'M25×0.75', diameter: '25mm', features: 'Common European standard', use: 'European optics, microscopy', color: '#fff9c4' },
+      { name: 'M27', spec: 'M27×0.75', diameter: '27mm', features: 'Photography filters, standard pitch', use: 'Camera lens filters', color: '#ffecb3' },
+      { name: 'M30', spec: 'M30×0.75', diameter: '30mm', features: 'Medium to large optics', use: 'Industrial cameras, filters', color: '#ffe0b2' },
+      { name: 'M32', spec: 'M32×0.75', diameter: '32mm', features: 'Industrial standard', use: 'Machine vision, industrial optics', color: '#ffccbc' },
+      { name: 'M37', spec: 'M37×0.75', diameter: '37mm', features: 'Common filter size', use: 'Photography, optical instruments', color: '#ffcdd2' },
+      { name: 'M49', spec: 'M49×0.75', diameter: '49mm', features: 'Large photography filters', use: 'DSLR lenses, professional cameras', color: '#f8bbd9' },
+      { name: 'M52', spec: 'M52×0.75', diameter: '52mm', features: 'Standard large filter size', use: 'Professional photography', color: '#e1bee7' },
+      { name: 'M55', spec: 'M55×0.75', diameter: '55mm', features: 'Large optics applications', use: 'Wide-angle lenses, telescopes', color: '#d1c4e9' },
+      { name: 'M58', spec: 'M58×0.75', diameter: '58mm', features: 'Popular DSLR size', use: 'Standard DSLR lenses', color: '#c5cae9' },
+      { name: 'M62', spec: 'M62×0.75', diameter: '62mm', features: 'Large telephoto lenses', use: 'Professional telephoto lenses', color: '#bbdefb' },
+      { name: 'M72', spec: 'M72×0.75', diameter: '72mm', features: 'Extra large filters', use: 'Large telephoto, wide-angle', color: '#b3e5fc' },
+      { name: 'M77', spec: 'M77×0.75', diameter: '77mm', features: 'Professional large filters', use: 'High-end photography lenses', color: '#b2ebf2' },
+      { name: 'M82', spec: 'M82×0.75', diameter: '82mm', features: 'Very large diameter', use: 'Ultra-wide lenses, specialty optics', color: '#b2dfdb' }
+    ];
+
+    const otherMounts = [
+      {
+        name: 'Standard (No Thread)',
+        spec: 'Press-fit/Clip-in',
+        diameter: 'Variable',
+        features: 'No threads, mechanical retention only',
+        use: 'Simple filter holders, disposable mounts',
+        color: '#c8e6c9'
+      },
+      {
+        name: 'Bayonet Mount',
+        spec: 'Twist-lock',
+        diameter: 'Variable',
+        features: 'Quick connect/disconnect, camera lens style',
+        use: 'Fast filter changes, professional systems',
+        color: '#dcedc8'
+      },
+      {
+        name: 'Filter Wheel',
+        spec: 'Custom/Proprietary',
+        diameter: 'Variable',
+        features: 'Motorized, multiple filters, automated',
+        use: 'Scientific instruments, automated systems',
+        color: '#f0f4c3'
+      },
+      {
+        name: 'Drop-in Filter',
+        spec: 'Rectangular slot',
+        diameter: 'Variable',
+        features: 'Large format, no threads, slide-in',
+        use: 'Large format photography, specialty systems',
+        color: '#fff9c4'
+      }
+    ];
+
+    // Populate tables
+    function populateTable(tableId, mounts) {
+      const tbody = d3.select(`#${tableId}`);
+      
+      mounts.forEach(mount => {
+        const row = tbody.append('tr');
+        
+        row.append('td')
+          .html(`<div class="mount-name">${mount.name}</div>`);
+        
+        row.append('td')
+          .html(`<span class="thread-spec">${mount.spec}</span>`);
+        
+        // Only show text for Suitable Optics Size
+        row.append('td')
+          .attr('class', 'diagram-cell')
+          .html(mount.diameter);
+        
+        row.append('td')
+          .html(`<div class="features">${mount.features}</div>`);
+        
+        row.append('td')
+          .html(`<div class="typical-use">${mount.use}</div>`);
+      });
+    }
+
+    // Initialize tables
+    populateTable('imperial-mounts', imperialMounts);
+    populateTable('metric-mounts', metricMounts);
+    populateTable('other-mounts', otherMounts);
+  </script>
+</body>
+</html> 
